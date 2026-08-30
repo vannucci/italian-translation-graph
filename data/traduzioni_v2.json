@@ -207,12 +207,14 @@
         }
       },
       "note": "gommose = standard term for supplement gummies, not candy-specific. Avoid 'le gomme' (= gum / erasers / tires). 'gommine' is cute but singular 'gommina' = hair gel.",
-      "evidence": {
-        "file": "references/gummies__amazon-it__2026-08.png",
-        "claim": "Italian Amazon lists iron supplement gummies as 'FERRO & VITAMINA C GOMMOSE' — gommose is the category noun, not candy-specific.",
-        "source": "amazon.it product listing",
-        "captured": "2026-08"
-      }
+      "evidence": [
+        {
+          "file": "references/gummies__amazon-it__2026-08.png",
+          "claim": "Italian Amazon lists iron supplement gummies as 'FERRO & VITAMINA C GOMMOSE' — gommose is the category noun, not candy-specific.",
+          "source": "amazon.it product listing",
+          "captured": "2026-08"
+        }
+      ]
     }
   ],
   "edges": [
