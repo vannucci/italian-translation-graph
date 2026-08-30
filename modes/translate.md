@@ -19,6 +19,8 @@ and — after confirmation — append it to `data/traduzioni_v2.json`.
 - a **short phrase or sentence** (`"it's time for bed"`)
 - **several at once**, one per line — treat each as its own entry
 - a phrase **containing a name** → this is a template, see Templates below
+- a phrase with a **trailing parenthetical** → context, per `_shared.md`.
+  Strip it, use it, fold a compressed form back into `en`.
 
 If no phrase was given, ask for one. Do not invent a phrase to demonstrate.
 

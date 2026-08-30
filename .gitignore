@@ -30,3 +30,5 @@ data/traduzioni_v2.json.*
 # NOT ignored, deliberately:
 #   data/traduzioni_v2.json   the corpus is the whole point of the repo
 #   config/prefs.yml          small, personal, and you want it versioned
+#   references/    attested-usage evidence; the citations for the corpus
+

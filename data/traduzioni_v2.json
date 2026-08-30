@@ -185,6 +185,36 @@
       "gender": "m",
       "slots": {},
       "note": "pulcino doubles as an affectionate pet name for a child. Feminine 'pulcina' exists but is rare/dialectal."
+    },
+    {
+      "id": "tr_gummies",
+      "en": "{name}, do you want your gummies? (iron supplement)",
+      "it": "{name}, vuoi le gommose?",
+      "alternates": [
+        "{name}, vuoi le tue caramelle gommose? (fuller, packaging register)",
+        "{name}, vuoi le vitamine?",
+        "{name}, vuoi gli orsetti?",
+        "{name}, le vòi le gommose? (toscano)",
+        "{name}, vuoi le gommine? (cutesy)"
+      ],
+      "pos": "sentence",
+      "register": "child",
+      "gender": null,
+      "slots": {
+        "name": {
+          "fills_with": "entity",
+          "default": "ent_evie"
+        }
+      },
+      "note": "gommose = standard term for supplement gummies, not candy-specific. Avoid 'le gomme' (= gum / erasers / tires). 'gommine' is cute but singular 'gommina' = hair gel.",
+      "evidence": [
+        {
+          "file": "references/gummies__amazon-it__2026-08.png",
+          "claim": "Italian Amazon lists iron supplement gummies as 'FERRO & VITAMINA C GOMMOSE' — gommose is the category noun, not candy-specific.",
+          "source": "amazon.it product listing",
+          "captured": "2026-08"
+        }
+      ]
     }
   ],
   "edges": [
@@ -210,6 +240,12 @@
       "from": "ent_evie",
       "rel": "addressed_to",
       "to": "tr_favorite_thing",
+      "primary": false
+    },
+    {
+      "from": "ent_evie",
+      "rel": "addressed_to",
+      "to": "tr_gummies",
       "primary": false
     }
   ],
