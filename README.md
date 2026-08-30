@@ -26,6 +26,8 @@ traduzioni/
   data/
     traduzioni_v2.json         # THE CORPUS — canonical
     quiz-log.jsonl             # derived drill history (gitignored)
+  references/
+    gummies__amazon-it__2026-08.png   # attested usage; the citation for tr_gummies
 ```
 
 ## Use

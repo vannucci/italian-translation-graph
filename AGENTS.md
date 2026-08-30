@@ -125,5 +125,6 @@ explicit confirmation.
 | `translate` | Default. EN phrase in, options out, entry appended.         |
 | `entity`    | "What's my pet name for X" — resolve aliases, follow edges. |
 | `quiz`      | Drill from the corpus. Grades against `it`.                 |
+| references/ | user — attested-usage evidence, immutable                   |
 
 Bare input with no mode named routes to `translate`.

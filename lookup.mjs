@@ -9,6 +9,7 @@
  *   node lookup.mjs wheelbarrow          exact, then substring
  *   node lookup.mjs "time for bed"       phrases work; quote them
  *   node lookup.mjs --entity Reginald    resolves aliases, follows edges
+ *   node lookup.mjs --refs gummies       attested-usage citations for an entry
  *   node lookup.mjs --list               every en → it, one per line
  *   node lookup.mjs --list --plain       tab-separated, for piping
  *   node lookup.mjs --stats              counts
@@ -33,7 +34,7 @@ const terms = argv.filter((a) => !a.startsWith('--'));
 const plain = flags.has('--plain');
 
 if (!flags.size && !terms.length) {
-  console.error('usage: lookup.mjs <phrase> | --entity <name> | --list | --stats');
+  console.error('usage: lookup.mjs <phrase> | --refs <phrase> | --entity <name> | --list | --stats');
   process.exit(1);
 }
 
@@ -104,6 +105,8 @@ function show(e) {
   const alts = (e.alternates ?? []).map((a) => render(a, e));
   if (alts.length) console.log(`  ${alts.join(' · ')}`);
   if (e.note) console.log(`  — ${e.note}`);
+  const n = (e.evidence ?? []).length;
+  if (n) console.log(`  [${n} ref${n > 1 ? 's' : ''}]`);
 }
 
 // ── modes ────────────────────────────────────────────────────────────────────
@@ -156,6 +159,20 @@ if (flags.has('--entity')) {
     }
   }
   if (ent._todo) console.log(`\n_todo: ${ent._todo}`);
+  process.exit(0);
+}
+
+if (flags.has('--refs')) {
+  const q = norm(terms.join(' '));
+  const e = byEn.get(q) ?? byEn.get(bare(q)) ?? entries.find((x) => norm(x.en).includes(q));
+  if (!e) { console.error(`not in corpus: "${terms.join(' ')}"`); process.exit(1); }
+  const evs = e.evidence ?? [];
+  if (!evs.length) { console.log(`${e.en} — no references filed`); process.exit(0); }
+  console.log(`${e.en}`);
+  for (const ev of evs) {
+    console.log(`  ${ev.claim}`);
+    console.log(`    ${ev.file}${ev.source ? `  (${ev.source}${ev.captured ? `, ${ev.captured}` : ''})` : ''}`);
+  }
   process.exit(0);
 }
 

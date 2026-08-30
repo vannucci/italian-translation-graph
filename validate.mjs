@@ -11,7 +11,7 @@
  * Exit 0 = clean (warnings allowed). Exit 1 = errors found.
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -19,6 +19,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const CORPUS = process.argv[2]
   ? resolve(process.argv[2])
   : join(HERE, 'data', 'traduzioni_v2.json');
+const REFDIR = join(HERE, 'references');
 
 const errors = [];
 const warnings = [];
@@ -106,6 +107,7 @@ const REGISTERS = new Set(['neutral', 'child', 'affectionate', 'formal', 'vulgar
 const ARTICLES = /^(il|lo|la|i|gli|le|l'|un|uno|una|un')\s|^l'/i;
 
 const seenEn = new Map();
+const cited = new Set();   // reference files actually pointed at by an entry
 
 for (const e of entries) {
   const id = e.id ?? '(no id)';
@@ -163,6 +165,28 @@ for (const e of entries) {
 
   if (Array.isArray(e.alternates) && new Set(e.alternates).size !== e.alternates.length)
     warn(`${id}: duplicate entries in alternates[]`);
+
+  // evidence[] — optional, but if present it must actually resolve
+  if ('evidence' in e) {
+    if (!Array.isArray(e.evidence)) {
+      err(`${id}: evidence must be an array`);
+    } else {
+      for (const [j, ev] of e.evidence.entries()) {
+        const at = `${id}.evidence[${j}]`;
+        if (typeof ev !== 'object' || ev === null) { err(`${at}: not an object`); continue; }
+        if (!ev.file) err(`${at}: "file" missing`);
+        else {
+          cited.add(ev.file.replace(/^\.?\//, ''));
+          if (!existsSync(resolve(HERE, ev.file)))
+            err(`${at}: file not found — ${ev.file} (a dangling citation is worse than none)`);
+        }
+        if (!ev.claim || !String(ev.claim).trim())
+          err(`${at}: "claim" missing — the claim is what gets read; the image is only for re-checking`);
+        if (!ev.source) warn(`${at}: no source`);
+        if (!ev.captured) warn(`${at}: no captured date — commercial usage drifts`);
+      }
+    }
+  }
 }
 
 // ── edges ────────────────────────────────────────────────────────────────────
@@ -204,6 +228,14 @@ for (const [key] of pairs) {
 for (const e of entities) {
   if (!edges.some((g) => g.from === e.id))
     warn(`${e.id}: entity has no edges — nothing references it`);
+}
+
+if (existsSync(REFDIR)) {
+  for (const f of readdirSync(REFDIR)) {
+    if (f.startsWith('.')) continue;
+    if (!cited.has(`references/${f}`))
+      warn(`references/${f}: on disk but cited by no entry — file it or delete it`);
+  }
 }
 
 // ── report ───────────────────────────────────────────────────────────────────
