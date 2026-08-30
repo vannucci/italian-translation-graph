@@ -1,0 +1,64 @@
+# traduzioni — preferences
+#
+# USER LAYER. Never auto-modified. Edit freely; updates will not touch this.
+# Read by every mode that renders or grades Italian.
+
+lang:
+  source: en-US
+  target: it
+
+region:
+  name: Tuscany / central Italy
+  # Offer Tuscan and central forms as labeled options alongside standard Italian.
+  offer_regional: true
+  # Never make a regional form the graded answer automatically. Only when
+  # explicitly chosen. Turning this on will teach you forms that don't travel.
+  regional_as_default_graded: false
+
+output:
+  # Options per translation, best guess first.
+  min_options: 3
+  max_options: 5
+  # Include the article with every noun. The article carries the gender, and
+  # gender is the hard part. Turning this off makes the corpus easier and
+  # meaningfully less useful.
+  articles_in_graded_answer: true
+  # Explanations only on request.
+  terse: true
+
+quiz:
+  default_count: 10
+  # Order: unseen first, then previously missed, then random.
+  # Never file order — position is not difficulty.
+  selection: unseen_then_missed_then_random
+
+  grading:
+    # Accents are graded. "piu" is not "più"; "e" is not "è".
+    # This is the single most important toggle in this file.
+    accents_strict: true
+    # A bare noun does not pass for an entry whose graded answer has an article.
+    require_article: true
+    # Case and surrounding whitespace are forgiven.
+    case_sensitive: false
+    # Trailing . ! ? are stripped before comparison.
+    ignore_terminal_punctuation: true
+    # Answering with a filed alternate is its own outcome — not correct,
+    # not a failure. Tracked separately so a consistently-preferred alternate
+    # surfaces as a promotion candidate.
+    alternates_count_as: near_miss
+    # After this many near misses on the same entry, suggest promoting the
+    # alternate to the graded answer. Suggest only — never promote silently.
+    promote_suggestion_threshold: 2
+
+  log:
+    # DERIVED. Safe to delete; regenerates by drilling. Gitignored.
+    path: data/quiz-log.jsonl
+    enabled: true
+
+entities:
+  # Most given names stay unchanged in Italian. Set it_name per entity only
+  # when there is a real Italian form actually in use.
+  default_it_name: same_as_english
+  # When type or gender is unclear and it affects the Italian: pick the
+  # likeliest, mark _todo on the entity, say so in one line. Do not stall.
+  unknown_policy: guess_and_mark_todo

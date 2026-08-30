@@ -1,0 +1,221 @@
+{
+  "schema_version": 2,
+  "lang": {
+    "source": "en-US",
+    "target": "it"
+  },
+  "prefs": {
+    "region": "Tuscany / central Italy",
+    "note": "Central Italian and Tuscan slang accepted and often preferred over neutral standard Italian."
+  },
+  "rel_vocab": [
+    "endearment",
+    "addressed_to",
+    "pet_name_for",
+    "nickname_of",
+    "refers_to",
+    "spoken_by",
+    "belongs_to",
+    "describes",
+    "located_in",
+    "context_of"
+  ],
+  "entities": [
+    {
+      "id": "ent_evie",
+      "type": "person_child_f",
+      "names": ["Evie", "Ev"],
+      "traits": ["assumed female child"],
+      "it_name": "Evie",
+      "_todo": "confirm age/relationship; child vs. pet splits pipì vs. bisogni"
+    },
+    {
+      "id": "ent_reggie",
+      "type": "pet",
+      "species": "cat",
+      "names": ["Reggie", "Reginald"],
+      "traits": ["black", "old"],
+      "it_name": "Reggie"
+    }
+  ],
+  "entries": [
+    {
+      "id": "tr_noggin",
+      "en": "Give me your noggin",
+      "it": "Su con la capoccia",
+      "alternates": [
+        "Fuori la testolina!",
+        "Dammi la testolina",
+        "Dov'è quella testolina?",
+        "Fai passare la testolina"
+      ],
+      "pos": "phrase",
+      "register": "child",
+      "gender": "f",
+      "region": "central / Tuscan",
+      "slots": {},
+      "note": "Dressing a child. Capoccia = noggin, comic, alive in Tuscany and Lazio; in Tuscany it also means head of household/farm (mezzadria sense). Head exits the collar, so fuori, never dentro. Avoid pera (dominated by heroin slang); testina reads as printer/stylus head."
+    },
+    {
+      "id": "tr_favorite_thing",
+      "en": "{name}, what was your favorite thing today?",
+      "it": "{name}, cosa ti è piaciuto di più oggi?",
+      "alternates": [
+        "{name}, qual è stata la cosa più bella di oggi?",
+        "{name}, qual è stata la parte più bella della giornata?",
+        "{name}, che cosa ti è piaciuto di più oggi?",
+        "{name}, che è stata la cosa più bella d'oggi? (toscano, parlato)"
+      ],
+      "pos": "sentence",
+      "register": "affectionate / child",
+      "gender": null,
+      "slots": {
+        "name": {
+          "fills_with": "entity",
+          "default": "ent_evie"
+        }
+      },
+      "note": "Avoid 'cosa favorita' — calque. Italian restructures to 'la cosa più bella' or 'ti è piaciuto di più'."
+    },
+    {
+      "id": "tr_bedtime",
+      "en": "{name}, it's time for bed",
+      "it": "{name}, è ora della nanna",
+      "alternates": [
+        "{name}, è ora di andare a letto",
+        "{name}, a nanna!",
+        "{name}, filiamo a letto"
+      ],
+      "pos": "sentence",
+      "register": "child",
+      "gender": null,
+      "slots": {
+        "name": {
+          "fills_with": "entity",
+          "default": "ent_evie"
+        }
+      },
+      "note": "'nanna' is child-directed; use 'letto' for adults."
+    },
+    {
+      "id": "tr_potty",
+      "en": "{name}, do you need to go potty?",
+      "it": "{name}, ti scappa la pipì?",
+      "alternates": [
+        "{name}, devi fare la pipì?",
+        "{name}, ti scappa?",
+        "{name}, andiamo a fare la pipì?",
+        "{name}, devi fare i bisogni?"
+      ],
+      "pos": "sentence",
+      "register": "child",
+      "gender": null,
+      "slots": {
+        "name": {
+          "fills_with": "entity",
+          "default": "ent_evie"
+        }
+      },
+      "note": "'ti scappa' is the natural idiom (lit. 'it's escaping you'); 'fare i bisogni' is dog/vet phrasing."
+    },
+    {
+      "id": "tr_void_boy",
+      "en": "void boy",
+      "it": "Buietto",
+      "alternates": [
+        "Buchetto Nero",
+        "il mio Vuoto",
+        "Nullino",
+        "Signor Nulla"
+      ],
+      "pos": "noun_phrase",
+      "register": "affectionate",
+      "gender": "m",
+      "slots": {},
+      "note": "Avoid 'Ombretto' (= eyeshadow)."
+    },
+    {
+      "id": "tr_wheat",
+      "en": "wheat",
+      "it": "il grano",
+      "alternates": ["il frumento", "le spighe di grano", "il grano duro"],
+      "pos": "noun",
+      "register": "neutral",
+      "gender": "m",
+      "slots": {},
+      "note": "grano = everyday word; frumento = technical/agronomic. grano also = cash (slang)."
+    },
+    {
+      "id": "tr_wheelbarrow",
+      "en": "wheelbarrow",
+      "it": "la carriola",
+      "alternates": [
+        "la cariola",
+        "il carrettino a mano",
+        "la barella da cantiere"
+      ],
+      "pos": "noun",
+      "register": "neutral",
+      "gender": "f",
+      "slots": {},
+      "note": "cariola is the common Tuscan/central spelling-pronunciation."
+    },
+    {
+      "id": "tr_hay",
+      "en": "hay",
+      "it": "il fieno",
+      "alternates": [
+        "la balla di fieno",
+        "il foraggio",
+        "il fienile (hayloft)"
+      ],
+      "pos": "noun",
+      "register": "neutral",
+      "gender": "m",
+      "slots": {},
+      "note": "paglia = straw, not hay. Do not swap."
+    },
+    {
+      "id": "tr_chick",
+      "en": "chick (baby chicken)",
+      "it": "il pulcino",
+      "alternates": ["il pulcino di gallina", "il pollastrino", "il pigolino"],
+      "pos": "noun",
+      "register": "neutral",
+      "gender": "m",
+      "slots": {},
+      "note": "pulcino doubles as an affectionate pet name for a child. Feminine 'pulcina' exists but is rare/dialectal."
+    }
+  ],
+  "edges": [
+    {
+      "from": "ent_reggie",
+      "rel": "endearment",
+      "to": "tr_void_boy",
+      "primary": true
+    },
+    {
+      "from": "ent_evie",
+      "rel": "addressed_to",
+      "to": "tr_bedtime",
+      "primary": true
+    },
+    {
+      "from": "ent_evie",
+      "rel": "addressed_to",
+      "to": "tr_potty",
+      "primary": false
+    },
+    {
+      "from": "ent_evie",
+      "rel": "addressed_to",
+      "to": "tr_favorite_thing",
+      "primary": false
+    }
+  ],
+  "id_policy": {
+    "entities": "ent_ + lowercase name, snake_case",
+    "entries": "tr_ + English lemma, snake_case. Never sequential numbers.",
+    "collisions": "suffix a sense disambiguator, e.g. tr_chick_bird vs tr_chick_slang"
+  }
+}
